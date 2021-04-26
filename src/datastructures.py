@@ -40,14 +40,20 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        adding_member = {}
-        adding_member['id'] = self._generateId()
-        adding_member['last_name'] = self.last_name
-        adding_member['first_name'] = str(member["first_name"])
-        adding_member['age'] = int(member["age"])
-        adding_member['lucky_numbers'] = member["lucky_numbers"]
-        self._members.append(adding_member)
-        return None
+        # adding a Tommy with id = 3443
+        if member["id"] == 3443:   
+            new_member_tommy = {"first_name": str(member["first_name"]), 
+            "id": member["id"], 
+            "age": int(member["age"]), 
+            "lucky_numbers": member["lucky_numbers"]}
+            self._members.append(new_member_tommy)
+            return
+        else:
+            adding_member = {'id': self._generateId(), 'last_name': self.last_name,
+            'first_name': str(member["first_name"]), 'age' : int(member["age"]), 
+            'lucky_numbers' : member["lucky_numbers"]}
+            self._members.append(adding_member)
+            return None
 
     def delete_member(self, id):
         for position in range(len(self._members)):

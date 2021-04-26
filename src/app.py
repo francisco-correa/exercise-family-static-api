@@ -36,21 +36,22 @@ def get_all_members():
     return jsonify(response_body["family"]), 200
 
 # one member
-@app.route('/member/<int:member_id>', methods=['GET'])
-def get_a_member(member_id):
-    member = jackson_family.get_member(int(member_id))
+@app.route('/member/<int:id>', methods=['GET'])
+def get_a_member(id):
+    member = jackson_family.get_member(int(id))
     response_body = {
         "member": member
     }
     return jsonify(response_body), 200
 
-@app.route('/members', methods=['POST'])
+# create a member
+@app.route('/member', methods=['POST'])
 def adding_member():
     data = request.get_json()
     jackson_family.add_member(data)
     return jsonify({"msg":"Member added"}), 200
 
-
+# delete a member
 @app.route('/member/<int:id>', methods=['DELETE'])
 def delete_member(id):
     jackson_family.delete_member(id)
